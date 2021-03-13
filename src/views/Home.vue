@@ -1,23 +1,21 @@
 <template>
   <div class="container">
-    <img alt="Vue logo" class="logo" src="../assets/logo.png">
-    <TodoList></TodoList>
+      from Home
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import TodoList from '../components/TodoList.vue'
 
 export default {
   name: 'Home',
   components: {
-    TodoList
+      
   }
 }
 </script>
 
-<style lang="scss">
+<style>
 *{
   box-sizing: border-box;
 }
