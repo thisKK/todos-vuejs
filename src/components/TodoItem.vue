@@ -71,18 +71,14 @@ export default {
   },
   methods: {
     removeTodo(index) {
-      this.$emit("removeTodo", index);
+      eventBus.$emit("removeTodo", index);
     },
-    editTodo() {
-      this.beforeEditCache = this.title;
-      this.editing = true;
-    },
-    doneEdit() {
+     doneEdit() {
       if (this.title.trim() == "") {
         this.title = this.beforeEditCache;
       }
       this.editing = false;
-      this.$emit('finishedEdit',{
+      eventBus.$emit('finishedEdit',{
         'index': this.index,
         'todo':{
           'id':this.id,
@@ -92,12 +88,13 @@ export default {
         }
       })
     },
+    editTodo() {
+      this.beforeEditCache = this.title;
+      this.editing = true;
+    },
     cancelEdit() {
       this.title = this.beforeEditCache;
       this.editing = false;
-    },
-     checkAllTodos() {
-      this.$emit("checkAllTodos", this.completed)
     },
   },
 };
