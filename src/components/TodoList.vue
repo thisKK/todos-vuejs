@@ -56,20 +56,6 @@ export default {
       ]
     }
   },
-  // created() {
-  //   eventBus.$on('removedTodo', (id) => this.removeTodo(id))
-  //   eventBus.$on('finishedEdit', (data) => this.finishedEdit(data))
-  //   eventBus.$on('checkAllChanged', (checked) => this.checkAllTodos(checked))
-  //   eventBus.$on('filterChanged', (filter) => this.filter = filter)
-  //   eventBus.$on('clearCompletedTodos', () => this.clearCompleted())
-  // },
-  // beforeDestroy() {
-  //   eventBus.$off('removedTodo')
-  //   eventBus.$off('finishedEdit')
-  //   eventBus.$off('checkAllChanged')
-  //   eventBus.$off('filterChanged')
-  //   eventBus.$off('clearCompletedTodos')
-  // },
   computed: {
     remaining() {
       return this.todos.filter(todo => !todo.completed).length
