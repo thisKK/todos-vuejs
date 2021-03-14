@@ -7,33 +7,39 @@
     </transition-group>
 
     <div class="extra-container">
-      <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAllTodos"> Check All</label></div>
-      <div>{{ remaining }} items left</div>
+      <todo-check-all :anyRemaining="anyRemaining" @checkAllTodos="checkAllTodos"></todo-check-all>
+      <todo-remaining :remaining="remaining"></todo-remaining>
     </div>
 
     <div class="extra-container">
-      <div>
-        <button :class="{ active: filter == 'all' }" @click="filter = 'all'">All</button>
-        <button :class="{ active: filter == 'active' }" @click="filter = 'active'">Active</button>
-        <button :class="{ active: filter == 'completed' }" @click="filter = 'completed'">Completed</button>
-      </div>
+      <todo-filtered @filterChanged="filterChanged"></todo-filtered>
 
-      <div>
+      <todo-clear-completed :showClearCompletedButton="showClearCompletedButton" @clearCompleted="clearCompleted"></todo-clear-completed>
+      <!-- <div>
         <transition name="fade">
         <button v-if="showClearCompletedButton" @click="clearCompleted">Clear Completed</button>
         </transition>
-      </div>
+      </div> -->
 
     </div>
   </div>
 </template>
 
 <script>
+import TodoCheckAll from './TodoCheckAll.vue'
+import TodoClearCompleted from './TodoClearCompleted.vue'
+import TodoFiltered from './TodoFiltered.vue'
 import TodoItem from './TodoItem'
+import TodoRemaining from './TodoRemaining.vue'
+
 export default {
   name: 'todo-list',
   components: {
     TodoItem,
+    TodoRemaining,
+    TodoCheckAll,
+    TodoFiltered,
+    TodoClearCompleted
   },
   data () {
     return {
@@ -78,6 +84,9 @@ export default {
     }
   },
   methods: {
+    filterChanged(filter){
+      this.filter = filter
+    },
     addTodo() {
       if (this.newTodo.trim().length == 0) {
         return

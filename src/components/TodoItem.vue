@@ -33,6 +33,9 @@ export default {
       'beforeEditCache': '',
     }
   },
+  created(){
+    
+  },
   watch: {
     checkAll() {
       // if (this.checkAll) {
